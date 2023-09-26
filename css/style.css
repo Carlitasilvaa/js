@@ -1,0 +1,56 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; }
+
+header{
+    background-color: red;
+}
+.titulo-principal {
+    text-align: center;
+    padding: 10vh 0; 
+    font-size: 3.125rem;
+}
+.titulo-principal h1{
+    padding: 1.875rem;
+}
+.titulo-principal p{
+    padding: 1.25rem;
+    font-size: 1.875rem;
+}
+main{
+    background-color: black;
+}
+.titulo-planes {
+    text-align: center;
+    color: white;
+    font-size: 1.5625rem;
+padding: 15vh;
+}
+.contenedor-cards{
+    display: flex;
+    flex-direction: row;
+    margin: .9375rem;
+    padding: .625rem;
+    width: 100%;
+}
+.card{
+    color: white;
+    width: 30%;
+    margin: auto;
+}
+.formulario{
+    background-color: red;
+    width: 100%;
+    padding: 3.125rem;
+
+}
+.formulario h2{
+    padding: .9375rem;
+}
+#elijasuplan{
+    width:50%;
+}
+#elijalacantidaddemeses{
+    width: 50%;
+}
