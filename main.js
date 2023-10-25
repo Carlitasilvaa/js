@@ -46,8 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
         }
 
-        mostrarMensaje(`Costo total del Plan ${plan} por ${meses} meses: $${costoTotal}`);
-      
+mostrarMensaje(`Costo total del Plan ${plan} por ${meses} meses: $${costoTotal}`);
         let labelRespuesta = document.createElement("label");
         labelRespuesta.textContent = "¿Deseas contratar el plan? (sí/no)";
         let inputRespuesta = document.createElement("input");
@@ -56,7 +55,6 @@ document.addEventListener('DOMContentLoaded', function() {
         let enviarRespuestaBtn = document.createElement("button");
         enviarRespuestaBtn.textContent = "Enviar";
         enviarRespuestaBtn.addEventListener("click", function() {
-            // Accede al valor del inputRespuesta correctamente
             respuestaUsuario = inputRespuesta.value.toLowerCase();
             if (respuestaUsuario === "si") {
                 mostrarInputEmail();
@@ -89,19 +87,16 @@ document.addEventListener('DOMContentLoaded', function() {
             mostrarMensaje(`Gracias por utilizar Narex. Te hemos enviado un correo de confirmación a ${email}.`);
         });
 
-        // Limpiar el mensajeDiv antes de agregar nuevos elementos
         mensajeDiv.innerHTML = '';
         mensajeDiv.appendChild(inputEmail);
         mensajeDiv.appendChild(enviarEmailBtn);
     }
-    // Resto de tu código (buscarPorTitulo, filtrarPorCalificacion, etc.)
 });
 
     function buscarPorTitulo(titulo) {
         return catalogo.find(item => item.titulo.toLowerCase() === titulo.toLowerCase());
     }
 
-    // Función para filtrar por calificación mínima
     function filtrarPorCalificacion(calificacionMinima) {
         return catalogo.filter(item => item.calificacion >= calificacionMinima);
     }
