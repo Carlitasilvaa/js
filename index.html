@@ -43,28 +43,26 @@
                     <ul><li>Audio espacial de Narex</li></ul>
             </div>
             </div>
-            <div class="formulario">
-                <fieldset>
-                <form action="">
-                    <label for="Elija su plan">
-                        <h2>Elija su plan</h2>
-                        <input type="text" placeholder="plan basico/plan intermedio/plan familiar" id="elijasuplan">
-                    </label>
-                    <label for="elija la cantidad de meses">
-                        <h2>Elija la cantidad de meses</h2>
-                        <input type="text" placeholder="1 a 12" id="elijalacantidaddemeses">
-                    </label>
-                    <div class="boton-calcular">
-                        <button>calcular</button>
-                    </div>
-                    <label for="total a pagar">
-                        <h2>total a pagar</h2>
-                        <input type="text" id="totalapagar">
-                    </label>
-                </form>
-                </fieldset>
-            </div>
-    </main>
+        <div class="formulario">
+            <form id="formulario">
+                <label for="elijasuplan">
+                    <h2>Elija su plan</h2>
+                    <input type="text" placeholder="plan basico/plan intermedio/plan familiar" id="elijasuplan">
+                </label>
+                <label for="elijalacantidaddemeses">
+                    <h2>Elija la cantidad de meses</h2>
+                    <input type="text" placeholder="1 a 12" id="elijalacantidaddemeses">
+                </label>
+                <div>
+                    <button class="boton-calcular" type="submit">calcular</button>
+                </div>
+            </form>
+        </div>
+        <div class="mensaje" id="mensaje">
+            <h2></h2>
+            <p></p>
+        </div>
+  
     <footer>
 
     </footer>

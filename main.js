@@ -1,126 +1,107 @@
-let catalogo = [
-    {
-        titulo: "Barbie",
-        calificacion: 0 
-    },
-    {
-        titulo: "Saw X: El juego del miedo",
-        calificacion: 0
-    },
-    {
-        titulo: "Sonidos de libertad",
-        calificacion: 0
-    }
-];
-function buscarPorTitulo(titulo) {
-    return catalogo.find(item => item.titulo.toLowerCase() === titulo.toLowerCase());
-}
-
-function filtrarPorCalificacion(calificacionMinima) {
-    return catalogo.filter(item => item.calificacion >= calificacionMinima);
-}
-
-let bienvenido = prompt("bienvenido a narex, plataforma de series y peliculas. ingresa tu plan: plan basico/plan intermedio/ plan familiar") 
-
-bienvenido = bienvenido.toLowerCase();
-
-while (true) {
-    bienvenido = prompt("Bienvenido a Narex, plataforma de series y películas. Ingresa tu plan: Plan Básico/Plan Intermedio/Plan Familiar").toLowerCase();
-
-    if (bienvenido === "plan basico" || bienvenido === "plan intermedio" || bienvenido === "plan familiar") {
-        break;  
-    } else {
-        alert("Plan incorrecto. Por favor, ingresa un plan válido.");
-    }
-}
-
-if (bienvenido == "plan basico"){
-    alert("su plan tiene un valor de $1500")
-}else if (bienvenido == "plan intermedio"){
-    alert("su plan tiene un valor de $2000")
-}else if (bienvenido == "plan familiar"){
-    alert ("su plan tiene un valor de $3000")
-} else{
-    alert ("plan incorrecto")
-}
-
-let meses1 = parseInt(prompt ("ingrese la cantidad de meses a contratar"))
-
-if (meses1 >12) {
-  alert("Cantidad de meses no válida.");
-} else {
-  calcularCostoDelPlan();
-}
-
-
-function calcularCostoDelPlan() {
-    let planB = 1500
-    let planI = 2000
-    let planF = 3000 
-    let costoTotal = 0;
-
-    for (let i = 1; i <= meses1; i++){
-    switch (bienvenido) {
-    case "plan basico":
-        costoTotal = meses1 * planB;
-        break;
-    case "plan intermedio":
-        costoTotal = meses1 * planI;
-        break;
-    case "plan familiar":
-        costoTotal = meses1 * planF;
-        break;
-    default:
-        alert("El plan seleccionado no es válido.");
-        return; 
-    }
-
-    alert(`Costo total del Plan ${bienvenido} por ${meses1} meses: $${costoTotal}`);
-}
-}
-
-
-let continuar = prompt("¿Quieres contratar el plan? (sí/no), (calificar) para calificar las películas o (buscar) para buscar una película por título").toLowerCase();
-
-if (continuar === "si") {
-    let email = prompt("Por favor, ingresa tu dirección de correo electrónico:");
-    alert(`Gracias por utilizar Narex. Te hemos enviado un correo de confirmación a ${email}.`);
-} else if (continuar === "calificar") {
-    for (let i = 0; i < catalogo.length; i++) {
-        let calificacion = parseInt(prompt(`Por favor, califica "${catalogo[i].titulo}" del 1 al 5:`));
-        catalogo[i].calificacion = calificacion;
-    }
-
-    alert("¡Gracias por tus calificaciones! Ahora podemos ofrecerte recomendaciones personalizadas.");
-    
-    let deseaFiltrar = prompt("¿Deseas filtrar las películas por calificación mínima? (sí/no)").toLowerCase();
-
-    if (deseaFiltrar === "si") {
-        let calificacionMinima = parseInt(prompt("Ingresa la calificación mínima que deseas buscar:"));
-        let resultadosFiltrados = filtrarPorCalificacion(calificacionMinima);
-
-        if (resultadosFiltrados.length > 0) {
-            let mensaje = "Películas/Series con calificación " + calificacionMinima + " o superior:\n";
-
-            for (let i = 0; i < resultadosFiltrados.length; i++) {
-                mensaje += `${resultadosFiltrados[i].titulo} - Calificación: ${resultadosFiltrados[i].calificacion}\n`;
-            }
-
-            alert(mensaje);
-        } else {
-            alert(`No hay películas/series con calificación ${calificacionMinima} o superior en el catálogo.`);
+document.addEventListener('DOMContentLoaded', function() {
+    let catalogo = [
+        {
+            titulo: "Barbie",
+            calificacion: 0 
+        },
+        {
+            titulo: "Saw X: El juego del miedo",
+            calificacion: 0
+        },
+        {
+            titulo: "Sonidos de libertad",
+            calificacion: 0
         }
-    } else {
-        alert("¡Gracias por utilizar Narex! Esperamos que disfrutes de nuestro servicio.");
+    ];
+
+    let mensajeDiv = document.getElementById('mensaje');
+    let formulario = document.getElementById('formulario');
+    let respuestaUsuario;
+
+    formulario.addEventListener('submit', function(event) {
+        event.preventDefault();
+        let planSeleccionado = document.getElementById('elijasuplan').value.toLowerCase();
+        let meses = parseInt(document.getElementById('elijalacantidaddemeses').value);
+
+        if (planSeleccionado === "plan basico" || planSeleccionado === "plan intermedio" || planSeleccionado === "plan familiar") {
+            calcularCostoDelPlan(planSeleccionado, meses);
+        } else {
+            mostrarMensaje("Plan incorrecto. Por favor, ingresa un plan válido.");
+        }
+    });
+    function calcularCostoDelPlan(plan, meses) {
+        let costoTotal = 0;
+        switch (plan) {
+            case "plan basico":
+                costoTotal = meses * 1500;
+                break;
+            case "plan intermedio":
+                costoTotal = meses * 2000;
+                break;
+            case "plan familiar":
+                costoTotal = meses * 3000;
+                break;
+            default:
+                mostrarMensaje("El plan seleccionado no es válido.");
+                return;
+        }
+
+        mostrarMensaje(`Costo total del Plan ${plan} por ${meses} meses: $${costoTotal}`);
+      
+        let labelRespuesta = document.createElement("label");
+        labelRespuesta.textContent = "¿Deseas contratar el plan? (sí/no)";
+        let inputRespuesta = document.createElement("input");
+        inputRespuesta.type = "text";
+        inputRespuesta.id = "respuestaUsuario";
+        let enviarRespuestaBtn = document.createElement("button");
+        enviarRespuestaBtn.textContent = "Enviar";
+        enviarRespuestaBtn.addEventListener("click", function() {
+            // Accede al valor del inputRespuesta correctamente
+            respuestaUsuario = inputRespuesta.value.toLowerCase();
+            if (respuestaUsuario === "si") {
+                mostrarInputEmail();
+            } else if (respuestaUsuario === "no") {
+                mostrarMensaje("Gracias por visitar Narex. Esperamos verte de nuevo pronto.");
+            } else {
+                mostrarMensaje("Respuesta no válida. Por favor, ingresa 'si' o 'no'.");
+            }
+        });
+        mensajeDiv.appendChild(labelRespuesta);
+        mensajeDiv.appendChild(inputRespuesta);
+        mensajeDiv.appendChild(enviarRespuestaBtn);
     }
 
-} else if (continuar === "buscar") {
-    let tituloBuscado = prompt("Ingresa el título de la película que deseas buscar:");
-    let resultadoBusqueda = buscarPorTitulo(tituloBuscado);
-
-    if (resultadoBusqueda) {
-        alert(`Se encontró la película: ${resultadoBusqueda.titulo}`);
-    } else {
-        alert("No se encontró ninguna película con ese título en el catálogo.");
+    function mostrarMensaje(mensaje) {
+        mensajeDiv.querySelector('h2').textContent = mensaje;
     }
-} 
+
+    function mostrarInputEmail() {
+        let inputEmail = document.createElement('input');
+        inputEmail.type = 'email';
+        inputEmail.placeholder = 'Ingrese su correo electrónico';
+        inputEmail.id = 'emailInput';
+        let enviarEmailBtn = document.createElement('button');
+        enviarEmailBtn.textContent = 'Enviar';
+        enviarEmailBtn.id = 'enviarEmailBtn';
+
+        enviarEmailBtn.addEventListener('click', function() {
+            let email = inputEmail.value;
+            mostrarMensaje(`Gracias por utilizar Narex. Te hemos enviado un correo de confirmación a ${email}.`);
+        });
+
+        // Limpiar el mensajeDiv antes de agregar nuevos elementos
+        mensajeDiv.innerHTML = '';
+        mensajeDiv.appendChild(inputEmail);
+        mensajeDiv.appendChild(enviarEmailBtn);
+    }
+    // Resto de tu código (buscarPorTitulo, filtrarPorCalificacion, etc.)
+});
+
+    function buscarPorTitulo(titulo) {
+        return catalogo.find(item => item.titulo.toLowerCase() === titulo.toLowerCase());
+    }
+
+    // Función para filtrar por calificación mínima
+    function filtrarPorCalificacion(calificacionMinima) {
+        return catalogo.filter(item => item.calificacion >= calificacionMinima);
+    }
