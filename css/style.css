@@ -70,11 +70,13 @@ padding: 10vh;
 .mensaje{
     background-color: blueviolet;
     text-align: center;
-    
+    color: aliceblue;
 }
-.contratarPlan{
-    margin: 1.25rem;
+
+
+.contratarPlan {
+    display: none;
     text-align: center;
     color: aliceblue;
-    font-size: 3.125rem;
+
 }

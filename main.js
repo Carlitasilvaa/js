@@ -29,6 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
             mostrarMensaje("Plan incorrecto. Por favor, ingresa un plan válido.");
         }
     });
+
     function calcularCostoDelPlan(plan, meses) {
         let costoTotal = 0;
         switch (plan) {
@@ -46,7 +47,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
         }
 
-mostrarMensaje(`Costo total del Plan ${plan} por ${meses} meses: $${costoTotal}`);
+        mostrarMensaje(`Costo total del Plan ${plan} por ${meses} meses: $${costoTotal}`);
         let labelRespuesta = document.createElement("label");
         labelRespuesta.textContent = "¿Deseas contratar el plan? (sí/no)";
         let inputRespuesta = document.createElement("input");
@@ -82,8 +83,10 @@ mostrarMensaje(`Costo total del Plan ${plan} por ${meses} meses: $${costoTotal}`
         enviarEmailBtn.textContent = 'Enviar';
         enviarEmailBtn.id = 'enviarEmailBtn';
 
+        let email;
+
         enviarEmailBtn.addEventListener('click', function() {
-            let email = inputEmail.value;
+            email = inputEmail.value;
             mostrarMensaje(`Gracias por utilizar Narex. Te hemos enviado un correo de confirmación a ${email}.`);
         });
 
@@ -91,7 +94,13 @@ mostrarMensaje(`Costo total del Plan ${plan} por ${meses} meses: $${costoTotal}`
         mensajeDiv.appendChild(inputEmail);
         mensajeDiv.appendChild(enviarEmailBtn);
     }
+    let emailGuardado = localStorage.getItem('email');
+    if (emailGuardado) {
+        mostrarMensaje(`Correo electrónico guardado: ${emailGuardado}`);
+    }
 });
+
+
 
     function buscarPorTitulo(titulo) {
         return catalogo.find(item => item.titulo.toLowerCase() === titulo.toLowerCase());
