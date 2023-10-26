@@ -82,8 +82,9 @@ document.addEventListener('DOMContentLoaded', function() {
         let enviarEmailBtn = document.createElement('button');
         enviarEmailBtn.textContent = 'Enviar';
         enviarEmailBtn.id = 'enviarEmailBtn';
+        
 
-        let email;
+        let email =
 
         enviarEmailBtn.addEventListener('click', function() {
             email = inputEmail.value;
