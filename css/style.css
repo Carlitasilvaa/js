@@ -80,3 +80,12 @@ padding: 10vh;
     color: aliceblue;
 
 }
+.mi-input {
+
+    width: 700px; 
+    height: 40px; 
+    margin: 0 auto; 
+    border: 1px solid #ccc; 
+    border-radius: 5px;
+
+}
